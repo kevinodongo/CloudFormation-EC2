@@ -94,6 +94,14 @@ Resources:
           - !Ref InstanceType
           - Arch
       InstanceType: !Ref InstanceType
+      UserData: !Base64 
+        'Fn::Join':
+          - ''
+          - - |
+              #!/bin/bash -xe
+            - |
+              apt-get install -y aws-cfn-bootstrap
+            - ''
   InstanceSecurityGroup:
     Type: 'AWS::EC2::SecurityGroup'
     Properties:
